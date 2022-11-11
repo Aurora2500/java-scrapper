@@ -2,6 +2,7 @@ package org.example;
 
 import io.reactivex.rxjava3.core.Observable;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 
 public class Booking extends Website{
 	public Booking(String url) {
@@ -9,7 +10,12 @@ public class Booking extends Website{
 	}
 
 	@Override
-	protected Observable<Review> parseDocument(Document document) {
+	protected Observable<Element> reviewElements(Document document) {
+		return null;
+	}
+
+	@Override
+	protected Review parseReview(Element review) {
 		return null;
 	}
 }
