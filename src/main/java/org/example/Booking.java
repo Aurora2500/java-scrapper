@@ -5,8 +5,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 public class Booking extends Website{
-	public Booking(String url) {
-		super(url);
+	public Booking(String url, String location) {
+		super(url, "Booking", location);
 	}
 
 	@Override

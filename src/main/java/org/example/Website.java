@@ -10,9 +10,13 @@ import java.io.IOException;
 
 public abstract class Website {
 	private final String url;
+	protected final String source;
+	protected final String location;
 
-	protected Website(String url) {
+	protected Website(String url, String source, String location) {
 		this.url = url;
+		this.source = source;
+		this.location = location;
 	}
 
 	protected abstract Observable<Element> reviewElements(Document document);

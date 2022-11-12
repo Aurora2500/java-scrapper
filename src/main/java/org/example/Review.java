@@ -34,4 +34,9 @@ public class Review {
 	public String source() {
 		return source;
 	}
+
+	@Override
+	public String toString() {
+		return String.format("%s (%s) - %s/100 - %s\n%s\n\n", title, location, rating, source, content);
+	}
 }
