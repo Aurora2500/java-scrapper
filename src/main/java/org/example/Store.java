@@ -15,6 +15,7 @@ public class Store implements Observer<Review> {
 
 	public Store(String path) throws SQLException {
 		connection = DriverManager.getConnection("jdbc:sqlite:" + path);
+		connection.createStatement().execute("CREATE TABLE IF NOT EXISTS reviews (title TEXT, content TEXT, rating INTEGER, location TEXT, source TEXT)");
 	}
 
 	public void close() throws SQLException {
@@ -32,9 +33,7 @@ public class Store implements Observer<Review> {
 
 	@Override
 	public void onNext(@NonNull Review review) {
-		System.out.println(review);
-
-		/* try {
+		try {
 			PreparedStatement statement = connection.prepareStatement(INSERT_REVIEW);
 			statement.setString(1, review.title());
 			statement.setString(2, review.content());
@@ -44,7 +43,7 @@ public class Store implements Observer<Review> {
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
-		} */
+		}
 	}
 
 	@Override
@@ -61,6 +60,7 @@ public class Store implements Observer<Review> {
 	public void onComplete() {
 		try {
 			connection.commit();
+			connection.setAutoCommit(true);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
